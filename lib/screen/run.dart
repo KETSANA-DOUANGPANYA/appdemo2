@@ -10,6 +10,12 @@ class Run extends StatefulWidget {
 }
 
 class _RunState extends State<Run> with SingleTickerProviderStateMixin {
+  List<Map<String, Object>> lottery = [
+    {
+      'lotteryImage': 'assets/images/lion.jpg',
+      'lotteryNumbers': "00",
+    },
+  ];
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
