@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class Question extends StatelessWidget {
-  final String questionText;
+class ImageLottery extends StatelessWidget {
+  final String loterryImage;
 
-  Question({@required this.questionText});
+  ImageLottery({@required this.loterryImage});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class Question extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              questionText
+              loterryImage
             ),
             fit: BoxFit.cover
           )

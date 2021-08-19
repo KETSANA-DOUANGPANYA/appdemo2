@@ -23,11 +23,11 @@ class Quiz extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Answer(lotteryNumbers: lottery[lotteryIndex]['lotteryNumbers'],value1: val1,value2: val2,value3: val3,value4: val4),
+        NumberLottery(lotteryNumbers: lottery[lotteryIndex]['lotteryNumbers'],value1: val1,value2: val2,value3: val3,value4: val4),
         SizedBox(
           height: 20,
         ),
-        Question(questionText: lottery[lotteryIndex]['lotteryImage']),
+        ImageLottery(loterryImage: lottery[lotteryIndex]['lotteryImage']),
       ],
     );
   }
