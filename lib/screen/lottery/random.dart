@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class Result extends StatelessWidget {
   final Function onResetPressed;
 
-  Result({ @required this.onResetPressed});
+  Result({@required this.onResetPressed});
 
-
+  
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -13,7 +13,7 @@ class Result extends StatelessWidget {
         children: [
           FlatButton(
             onPressed: onResetPressed,
-            child: Text('ທຳນາຍ'),
+            child: Text('Restart Quiz'),
             textColor: Colors.blue,
           )
         ],

@@ -5,21 +5,29 @@ import 'imagesLottery.dart';
 class Quiz extends StatelessWidget {
   final int lotteryIndex;
   final List<Map<String, Object>> lottery;
+  final int val1;
+  final int val2;
+  final int val3;
+  final int val4;
 
   Quiz({
     @required this.lotteryIndex,
     @required this.lottery,
+    @required this.val1,
+    @required this.val2,
+    @required this.val3,
+    @required this.val4,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Question(questionText: lottery[lotteryIndex]['lotteryImage']),
+        Answer(lotteryNumbers: lottery[lotteryIndex]['lotteryNumbers'],value1: val1,value2: val2,value3: val3,value4: val4),
         SizedBox(
-          height: 50,
+          height: 20,
         ),
-        Answer(lotteryNumbers: lottery[lotteryIndex]['lotteryNumbers'])
+        Question(questionText: lottery[lotteryIndex]['lotteryImage']),
       ],
     );
   }

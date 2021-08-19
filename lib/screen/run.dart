@@ -10,7 +10,7 @@ class Run extends StatefulWidget {
   _RunState createState() => _RunState();
 }
 
-class _RunState extends State<Run> {
+class _RunState extends State<Run> with SingleTickerProviderStateMixin {
 
   // Score question and answer
   var _lotteryIndex = 0;
@@ -428,11 +428,10 @@ class _RunState extends State<Run> {
   Animation<double> _scaleAnimation;
   Animation<double> _menuScaleAnimation;
   Animation<Offset> _slideAnimation;
-  int variable, variable2, variable3, variable4, variable5, variable6;
+   int variable1, variable2, variable3, variable4;
 
   //initstate
   initLottery() {
-    _lotteryIndex = 0;
     lottery.shuffle();
   }
 
@@ -658,92 +657,8 @@ class _RunState extends State<Run> {
                                       SizedBox(
                                         height: 50,
                                       ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            begin: Alignment.centerLeft,
-                                            end: Alignment.centerRight,
-                                            colors: [
-                                              Colors.deepOrange,
-                                              Colors.orange
-                                            ],
-                                          ),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0)),
-                                        ),
-                                        child: Center(
-                                          child: RichText(
-                                            text: TextSpan(
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                  text: (variable).toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 50.0,
-                                                      fontWeight: FontWeight.bold),
-                                                ),
-                                                TextSpan(
-                                                  text: (variable2).toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 50.0,
-                                                      fontWeight: FontWeight.bold),
-                                                ),
-                                                TextSpan(
-                                                  text: '    ',
-                                                ),
-                                                TextSpan(
-                                                  text: (variable3).toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 50.0,
-                                                      fontWeight: FontWeight.bold),
-                                                ),
-                                                TextSpan(
-                                                  text: (variable4).toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 50.0,
-                                                      fontWeight: FontWeight.bold),
-                                                ),
-                                                TextSpan(
-                                                  text: '    ',
-                                                ),
-                                                TextSpan(
-                                                  text: (variable5).toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 50.0,
-                                                      fontWeight: FontWeight.bold),
-                                                ),
-                                                TextSpan(
-                                                  text: (variable6).toString(),
-                                                  style: TextStyle(
-                                                      fontSize: 50.0,
-                                                      fontWeight: FontWeight.bold),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 50,
-                                      ),
-                                      // ignore: deprecated_member_use
-                                      FlatButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(20.0),
-                                            side: BorderSide(color: Colors.red)),
-                                        color: Colors.deepOrange,
-                                        textColor: Colors.white,
-                                        disabledTextColor: Colors.black,
-                                        padding: EdgeInsets.all(10.0),
-                                        splashColor: Colors.red,
-                                        onPressed: () {},
-                                        child:
-                                        Image.asset('assets/images/lion.jpg'),
-                                      ),
-                                      SizedBox(
-                                        height: 50,
-                                      ),
-                                      // ignore: deprecated_member_use
+                                      Quiz(lotteryIndex: _lotteryIndex, lottery: lottery, val1: variable1,val2: variable2,val3: variable3,val4: variable4,),
+                                      SizedBox(height: 20,),
                                       FlatButton(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -756,12 +671,120 @@ class _RunState extends State<Run> {
                                         disabledTextColor: Colors.black,
                                         padding: EdgeInsets.all(9.0),
                                         splashColor: Colors.red,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          _randomLottery();
+                                        },
                                         child: Text(
                                           "ທຳນາຍ",
                                           style: TextStyle(fontSize: 40.0),
                                         ),
                                       ),
+                                      
+                                      
+                                      // Container(
+                                      //   decoration: BoxDecoration(
+                                      //     gradient: LinearGradient(
+                                      //       begin: Alignment.centerLeft,
+                                      //       end: Alignment.centerRight,
+                                      //       colors: [
+                                      //         Colors.deepOrange,
+                                      //         Colors.orange
+                                      //       ],
+                                      //     ),
+                                      //     borderRadius: BorderRadius.all(
+                                      //         Radius.circular(10.0)),
+                                      //   ),
+                                      //   child: Center(
+                                      //     child: RichText(
+                                      //       text: TextSpan(
+                                      //         children: <TextSpan>[
+                                      //           TextSpan(
+                                      //             text: (variable).toString(),
+                                      //             style: TextStyle(
+                                      //                 fontSize: 50.0,
+                                      //                 fontWeight: FontWeight.bold),
+                                      //           ),
+                                      //           TextSpan(
+                                      //             text: (variable2).toString(),
+                                      //             style: TextStyle(
+                                      //                 fontSize: 50.0,
+                                      //                 fontWeight: FontWeight.bold),
+                                      //           ),
+                                      //           TextSpan(
+                                      //             text: '    ',
+                                      //           ),
+                                      //           TextSpan(
+                                      //             text: (variable3).toString(),
+                                      //             style: TextStyle(
+                                      //                 fontSize: 50.0,
+                                      //                 fontWeight: FontWeight.bold),
+                                      //           ),
+                                      //           TextSpan(
+                                      //             text: (variable4).toString(),
+                                      //             style: TextStyle(
+                                      //                 fontSize: 50.0,
+                                      //                 fontWeight: FontWeight.bold),
+                                      //           ),
+                                      //           TextSpan(
+                                      //             text: '    ',
+                                      //           ),
+                                      //           TextSpan(
+                                      //             text: (variable5).toString(),
+                                      //             style: TextStyle(
+                                      //                 fontSize: 50.0,
+                                      //                 fontWeight: FontWeight.bold),
+                                      //           ),
+                                      //           TextSpan(
+                                      //             text: (variable6).toString(),
+                                      //             style: TextStyle(
+                                      //                 fontSize: 50.0,
+                                      //                 fontWeight: FontWeight.bold),
+                                      //           ),
+                                      //         ],
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      // SizedBox(
+                                      //   height: 50,
+                                      // ),
+                                      // ignore: deprecated_member_use
+                                      // FlatButton(
+                                      //   shape: RoundedRectangleBorder(
+                                      //       borderRadius:
+                                      //       BorderRadius.circular(20.0),
+                                      //       side: BorderSide(color: Colors.red)),
+                                      //   color: Colors.deepOrange,
+                                      //   textColor: Colors.white,
+                                      //   disabledTextColor: Colors.black,
+                                      //   padding: EdgeInsets.all(10.0),
+                                      //   splashColor: Colors.red,
+                                      //   onPressed: () {},
+                                      //   child:
+                                      //   Image.asset('assets/images/lion.jpg'),
+                                      // ),
+                                      // SizedBox(
+                                      //   height: 50,
+                                      // ),
+                                      // ignore: deprecated_member_use
+                                      // FlatButton(
+                                      //   shape: RoundedRectangleBorder(
+                                      //       borderRadius:
+                                      //       BorderRadius.circular(20.0),
+                                      //       side: BorderSide(color: Colors.red)),
+                                      //   color: Colors.deepOrange,
+                                      //   textColor: Colors.white,
+                                      //   materialTapTargetSize:
+                                      //   MaterialTapTargetSize.shrinkWrap,
+                                      //   disabledTextColor: Colors.black,
+                                      //   padding: EdgeInsets.all(9.0),
+                                      //   splashColor: Colors.red,
+                                      //   onPressed: () {},
+                                      //   child: Text(
+                                      //     "ທຳນາຍ",
+                                      //     style: TextStyle(fontSize: 40.0),
+                                      //   ),
+                                      // ),
                                       SizedBox(
                                         height: 50,
                                       ),
@@ -789,23 +812,22 @@ class _RunState extends State<Run> {
     int luckyNo2 = random.nextInt(9);
     int luckyNo3 = random.nextInt(9);
     int luckyNo4 = random.nextInt(9);
-    int luckyNo5 = random.nextInt(9);
-    int luckyNo6 = random.nextInt(9);
+
 
     setState(() {
-      variable = luckyNo;
+      variable1 = luckyNo;
       variable2 = luckyNo2;
       variable3 = luckyNo3;
       variable4 = luckyNo4;
-      variable5 = luckyNo5;
-      variable6 = luckyNo6;
+
     });
   }
 
-  // Reset quiz
+  // Random Lottery
   void _randomLottery() {
     setState(() {
       initLottery();
+      YourLuckyNumber();
     });
   }
 }

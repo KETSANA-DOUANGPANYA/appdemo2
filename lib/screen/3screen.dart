@@ -243,70 +243,70 @@ class _ThreeScreenState extends State<ThreeScreen>
                                   SizedBox(
                                     height: 50,
                                   ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight,
-                                        colors: [
-                                          Colors.deepOrange,
-                                          Colors.orange
-                                        ],
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10.0)),
-                                    ),
-                                    child: Center(
-                                      child: RichText(
-                                        text: TextSpan(
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: (variable).toString(),
-                                              style: TextStyle(
-                                                  fontSize: 50.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            TextSpan(
-                                              text: (variable2).toString(),
-                                              style: TextStyle(
-                                                  fontSize: 50.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            TextSpan(
-                                              text: '    ',
-                                            ),
-                                            TextSpan(
-                                              text: (variable3).toString(),
-                                              style: TextStyle(
-                                                  fontSize: 50.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            TextSpan(
-                                              text: (variable4).toString(),
-                                              style: TextStyle(
-                                                  fontSize: 50.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            TextSpan(
-                                              text: '    ',
-                                            ),
-                                            TextSpan(
-                                              text: (variable5).toString(),
-                                              style: TextStyle(
-                                                  fontSize: 50.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            TextSpan(
-                                              text: (variable6).toString(),
-                                              style: TextStyle(
-                                                  fontSize: 50.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   decoration: BoxDecoration(
+                                  //     gradient: LinearGradient(
+                                  //       begin: Alignment.centerLeft,
+                                  //       end: Alignment.centerRight,
+                                  //       colors: [
+                                  //         Colors.deepOrange,
+                                  //         Colors.orange
+                                  //       ],
+                                  //     ),
+                                  //     borderRadius: BorderRadius.all(
+                                  //         Radius.circular(10.0)),
+                                  //   ),
+                                  //   child: Center(
+                                  //     child: RichText(
+                                  //       text: TextSpan(
+                                  //         children: <TextSpan>[
+                                  //           TextSpan(
+                                  //             text: (variable).toString(),
+                                  //             style: TextStyle(
+                                  //                 fontSize: 50.0,
+                                  //                 fontWeight: FontWeight.bold),
+                                  //           ),
+                                  //           TextSpan(
+                                  //             text: (variable2).toString(),
+                                  //             style: TextStyle(
+                                  //                 fontSize: 50.0,
+                                  //                 fontWeight: FontWeight.bold),
+                                  //           ),
+                                  //           TextSpan(
+                                  //             text: '    ',
+                                  //           ),
+                                  //           TextSpan(
+                                  //             text: (variable3).toString(),
+                                  //             style: TextStyle(
+                                  //                 fontSize: 50.0,
+                                  //                 fontWeight: FontWeight.bold),
+                                  //           ),
+                                  //           TextSpan(
+                                  //             text: (variable4).toString(),
+                                  //             style: TextStyle(
+                                  //                 fontSize: 50.0,
+                                  //                 fontWeight: FontWeight.bold),
+                                  //           ),
+                                  //           TextSpan(
+                                  //             text: '    ',
+                                  //           ),
+                                  //           TextSpan(
+                                  //             text: (variable5).toString(),
+                                  //             style: TextStyle(
+                                  //                 fontSize: 50.0,
+                                  //                 fontWeight: FontWeight.bold),
+                                  //           ),
+                                  //           TextSpan(
+                                  //             text: (variable6).toString(),
+                                  //             style: TextStyle(
+                                  //                 fontSize: 50.0,
+                                  //                 fontWeight: FontWeight.bold),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   SizedBox(
                                     height: 50,
                                   ),
