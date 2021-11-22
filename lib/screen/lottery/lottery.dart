@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'numberLottery.dart';
 import 'imagesLottery.dart';
 
-class Quiz extends StatelessWidget {
+class Lottery extends StatelessWidget {
   final int lotteryIndex;
   final List<Map<String, Object>> lottery;
   final int val1;
@@ -10,7 +10,7 @@ class Quiz extends StatelessWidget {
   final int val3;
   final int val4;
 
-  Quiz({
+  Lottery({
     @required this.lotteryIndex,
     @required this.lottery,
     @required this.val1,

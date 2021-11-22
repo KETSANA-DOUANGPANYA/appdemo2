@@ -45,25 +45,25 @@ class _NumberLotteryState extends State<NumberLottery> {
               ),
               NumberSlideAnimation(
                 number: "${widget.value2}",
-                duration:  Duration(milliseconds: 2500),
-                curve: Curves.bounceIn,
-                textStyle: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold,color: Color(0xFFffffff)),
-              ),
-              NumberSlideAnimation(
-                number: "${widget.value3}",
                 duration:  Duration(milliseconds: 3000),
                 curve: Curves.bounceIn,
                 textStyle: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold,color: Color(0xFFffffff)),
               ),
               NumberSlideAnimation(
+                number: "${widget.value3}",
+                duration:  Duration(milliseconds: 4000),
+                curve: Curves.bounceIn,
+                textStyle: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold,color: Color(0xFFffffff)),
+              ),
+              NumberSlideAnimation(
                 number: "${widget.value4}",
-                duration:  Duration(milliseconds: 3500),
+                duration:  Duration(milliseconds: 5000),
                 curve: Curves.bounceIn,
                 textStyle: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold,color: Color(0xFFffffff)),
               ),
               NumberSlideAnimation(
                 number: "${widget.lotteryNumbers}",
-                duration:  Duration(milliseconds: 4000),
+                duration:  Duration(milliseconds: 6000),
                 curve: Curves.bounceIn,
                 textStyle: TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold,color: Color(0xFFffffff)),
               ),

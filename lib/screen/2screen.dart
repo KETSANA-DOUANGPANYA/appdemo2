@@ -312,6 +312,7 @@ class _TwoScreenState extends State<TwoScreen>
                                     height: 50,
                                   ),
                                   TextField(
+                                    keyboardType: TextInputType.number,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(),

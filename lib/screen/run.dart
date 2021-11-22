@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:number_slide_animation/number_slide_animation.dart';
+import 'lottery/imagesLottery.dart';
+import 'lottery/numberLottery.dart';
 import 'lottery/random.dart';
 import 'lottery/lottery.dart';
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/services.dart';
+import 'package:delayed_display/delayed_display.dart';
 
 class Run extends StatefulWidget {
   @override
@@ -11,7 +15,6 @@ class Run extends StatefulWidget {
 }
 
 class _RunState extends State<Run> with SingleTickerProviderStateMixin {
-
   // Score question and answer
   var _lotteryIndex = 0;
   List<Map<String, Object>> lottery = [
@@ -428,7 +431,7 @@ class _RunState extends State<Run> with SingleTickerProviderStateMixin {
   Animation<double> _scaleAnimation;
   Animation<double> _menuScaleAnimation;
   Animation<Offset> _slideAnimation;
-   int variable1, variable2, variable3, variable4;
+  int variable1, variable2, variable3, variable4;
 
   //initstate
   initLottery() {
@@ -457,6 +460,7 @@ class _RunState extends State<Run> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    print('Rebuild widget');
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
@@ -472,6 +476,7 @@ class _RunState extends State<Run> with SingleTickerProviderStateMixin {
   }
 
   Widget menu(context) {
+    Size size = MediaQuery.of(context).size;
     return SlideTransition(
       position: _slideAnimation,
       child: ScaleTransition(
@@ -533,36 +538,42 @@ class _RunState extends State<Run> with SingleTickerProviderStateMixin {
                   // trailing: Icon(Icons.more_vert),
                   onTap: () {},
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.exit_to_app,
-                    size: 40,
-                    color: Colors.black,
-                  ),
-                  title: Text('ອອກຈາກເເອັບ'),
 
-                  // trailing: Icon(Icons.more_vert),
-                  onTap: () {
-                    if (Platform.isAndroid) {
-                      SystemNavigator.pop();
-                    } else if (Platform.isIOS) {
-                      exit(0);
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 250,
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.settings,
-                    size: 40,
-                    color: Colors.black,
-                  ),
-                  title: Text('ຕັ້ງຄ່າ'),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.settings,
+                          size: 40,
+                          color: Colors.black,
+                        ),
+                        title: Text('ຕັ້ງຄ່າ'),
 
-                  // trailing: Icon(Icons.more_vert),
-                  onTap: () {},
+                        // trailing: Icon(Icons.more_vert),
+                        onTap: () {},
+                      ),
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.exit_to_app,
+                          size: 40,
+                          color: Colors.black,
+                        ),
+                        title: Text('ອອກຈາກເເອັບ'),
+
+                        // trailing: Icon(Icons.more_vert),
+                        onTap: () {
+                          if (Platform.isAndroid) {
+                            SystemNavigator.pop();
+                          } else if (Platform.isIOS) {
+                            exit(0);
+                          }
+                        },
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
@@ -600,199 +611,233 @@ class _RunState extends State<Run> with SingleTickerProviderStateMixin {
                       children: <Widget>[
                         Container(
                             child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: [Colors.white, Colors.white],
-                                ),
-                              ),
-                              child: Stack(
-                                children: <Widget>[
-                                  InkWell(
-                                    child:
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Colors.white, Colors.white],
+                            ),
+                          ),
+                          child: Stack(
+                            children: <Widget>[
+                              InkWell(
+                                child:
                                     Icon(Icons.menu, color: Colors.deepOrange),
-                                    onTap: () {
-                                      setState(() {
-                                        if (isCollapsed)
-                                          _controller.forward();
-                                        else
-                                          _controller.reverse();
+                                onTap: () {
+                                  setState(() {
+                                    if (isCollapsed)
+                                      _controller.forward();
+                                    else
+                                      _controller.reverse();
 
-                                        isCollapsed = !isCollapsed;
-                                      });
-                                    },
+                                    isCollapsed = !isCollapsed;
+                                  });
+                                },
+                              ),
+                              Column(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 40,
                                   ),
-                                  Column(
-                                    // mainAxisAlignment: MainAxisAlignment.center,
-
-                                    children: <Widget>[
-                                      SizedBox(
-                                        height: 40,
-                                      ),
-                                      Text(
-                                        "ທຳນາຍຫວຍ",
-                                        style: TextStyle(
-                                            fontSize: 40.0,
-                                            color: Colors.deepOrange,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.right,
-                                      ),
-                                      Text(
-                                        'ສາມາດກົດ"ທຳນາຍ"',
-                                        style: TextStyle(
-                                            fontSize: 20.0,
-                                            color: Colors.deepOrange,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.right,
-                                      ),
-                                      Text(
-                                        'ເພື່ອບອກເລກທີ່ຈະອອກໄດ້',
-                                        style: TextStyle(
-                                            fontSize: 20.0,
-                                            color: Colors.deepOrange,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.right,
-                                      ),
-                                      SizedBox(
-                                        height: 50,
-                                      ),
-                                      Quiz(lotteryIndex: _lotteryIndex, lottery: lottery, val1: variable1,val2: variable2,val3: variable3,val4: variable4,),
-                                      SizedBox(height: 20,),
-                                      FlatButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(20.0),
-                                            side: BorderSide(color: Colors.red)),
+                                  Text(
+                                    "ທຳນາຍຫວຍ",
+                                    style: TextStyle(
+                                        fontSize: 40.0,
                                         color: Colors.deepOrange,
-                                        textColor: Colors.white,
-                                        materialTapTargetSize:
-                                        MaterialTapTargetSize.shrinkWrap,
-                                        disabledTextColor: Colors.black,
-                                        padding: EdgeInsets.all(9.0),
-                                        splashColor: Colors.red,
-                                        onPressed: () {
-                                          _randomLottery();
-                                        },
-                                        child: Text(
-                                          "ທຳນາຍ",
-                                          style: TextStyle(fontSize: 40.0),
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                  Text(
+                                    'ສາມາດກົດ"ທຳນາຍ"',
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.deepOrange,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                  Text(
+                                    'ເພື່ອບອກເລກທີ່ຈະອອກໄດ້',
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.deepOrange,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.right,
+                                  ),
+                                  SizedBox(
+                                    height: 50,
+                                  ),
+                                  Center(
+                                    child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Colors.deepOrange,
+                                            Colors.orange
+                                          ],
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0)),
+                                      ),
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            //       Text(variable1.toString(), style: TextStyle(
+                                            //     fontSize: 50.0,
+                                            //     fontWeight: FontWeight.bold,
+                                            //     color: Color(0xFFffffff)),
+                                            // ),
+                                            //       Text(variable2.toString(), style: TextStyle(
+                                            //           fontSize: 50.0,
+                                            //           fontWeight: FontWeight.bold,
+                                            //           color: Color(0xFFffffff)),
+                                            //       ),
+                                            //       Text(variable3.toString(), style: TextStyle(
+                                            //           fontSize: 50.0,
+                                            //           fontWeight: FontWeight.bold,
+                                            //           color: Color(0xFFffffff)),
+                                            //       ),
+                                            //       Text(variable4.toString(), style: TextStyle(
+                                            //           fontSize: 50.0,
+                                            //           fontWeight: FontWeight.bold,
+                                            //           color: Color(0xFFffffff)),
+                                            //       ),
+                                            //       Text(lottery[_lotteryIndex]['lotteryNumbers'].toString(), style: TextStyle(
+                                            //           fontSize: 50.0,
+                                            //           fontWeight: FontWeight.bold,
+                                            //           color: Color(0xFFffffff)),
+                                            //       ),
+                                            NumberSlideAnimation(
+                                              number: "$variable1",
+                                              duration:
+                                                  Duration(milliseconds: 2000),
+                                              curve: Curves.bounceIn,
+                                              textStyle: TextStyle(
+                                                  fontSize: 50.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFFffffff)),
+                                            ),
+                                            NumberSlideAnimation(
+                                              number: "$variable2",
+                                              duration:
+                                                  Duration(milliseconds: 3000),
+                                              curve: Curves.bounceIn,
+                                              textStyle: TextStyle(
+                                                  fontSize: 50.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFFffffff)),
+                                            ),
+                                            NumberSlideAnimation(
+                                              number: "$variable3",
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              curve: Curves.bounceIn,
+                                              textStyle: TextStyle(
+                                                  fontSize: 50.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFFffffff)),
+                                            ),
+                                            NumberSlideAnimation(
+                                              number: "$variable4",
+                                              duration:
+                                                  Duration(milliseconds: 5000),
+                                              curve: Curves.bounceIn,
+                                              textStyle: TextStyle(
+                                                  fontSize: 50.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFFffffff)),
+                                            ),
+                                            NumberSlideAnimation(
+                                              number:
+                                                  "${lottery[_lotteryIndex]['lotteryNumbers']}",
+                                              duration:
+                                                  Duration(milliseconds: 6000),
+                                              curve: Curves.bounceIn,
+                                              textStyle: TextStyle(
+                                                  fontSize: 50.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFFffffff)),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      
-                                      
-                                      // Container(
-                                      //   decoration: BoxDecoration(
-                                      //     gradient: LinearGradient(
-                                      //       begin: Alignment.centerLeft,
-                                      //       end: Alignment.centerRight,
-                                      //       colors: [
-                                      //         Colors.deepOrange,
-                                      //         Colors.orange
-                                      //       ],
-                                      //     ),
-                                      //     borderRadius: BorderRadius.all(
-                                      //         Radius.circular(10.0)),
-                                      //   ),
-                                      //   child: Center(
-                                      //     child: RichText(
-                                      //       text: TextSpan(
-                                      //         children: <TextSpan>[
-                                      //           TextSpan(
-                                      //             text: (variable).toString(),
-                                      //             style: TextStyle(
-                                      //                 fontSize: 50.0,
-                                      //                 fontWeight: FontWeight.bold),
-                                      //           ),
-                                      //           TextSpan(
-                                      //             text: (variable2).toString(),
-                                      //             style: TextStyle(
-                                      //                 fontSize: 50.0,
-                                      //                 fontWeight: FontWeight.bold),
-                                      //           ),
-                                      //           TextSpan(
-                                      //             text: '    ',
-                                      //           ),
-                                      //           TextSpan(
-                                      //             text: (variable3).toString(),
-                                      //             style: TextStyle(
-                                      //                 fontSize: 50.0,
-                                      //                 fontWeight: FontWeight.bold),
-                                      //           ),
-                                      //           TextSpan(
-                                      //             text: (variable4).toString(),
-                                      //             style: TextStyle(
-                                      //                 fontSize: 50.0,
-                                      //                 fontWeight: FontWeight.bold),
-                                      //           ),
-                                      //           TextSpan(
-                                      //             text: '    ',
-                                      //           ),
-                                      //           TextSpan(
-                                      //             text: (variable5).toString(),
-                                      //             style: TextStyle(
-                                      //                 fontSize: 50.0,
-                                      //                 fontWeight: FontWeight.bold),
-                                      //           ),
-                                      //           TextSpan(
-                                      //             text: (variable6).toString(),
-                                      //             style: TextStyle(
-                                      //                 fontSize: 50.0,
-                                      //                 fontWeight: FontWeight.bold),
-                                      //           ),
-                                      //         ],
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // SizedBox(
-                                      //   height: 50,
-                                      // ),
-                                      // ignore: deprecated_member_use
-                                      // FlatButton(
-                                      //   shape: RoundedRectangleBorder(
-                                      //       borderRadius:
-                                      //       BorderRadius.circular(20.0),
-                                      //       side: BorderSide(color: Colors.red)),
-                                      //   color: Colors.deepOrange,
-                                      //   textColor: Colors.white,
-                                      //   disabledTextColor: Colors.black,
-                                      //   padding: EdgeInsets.all(10.0),
-                                      //   splashColor: Colors.red,
-                                      //   onPressed: () {},
-                                      //   child:
-                                      //   Image.asset('assets/images/lion.jpg'),
-                                      // ),
-                                      // SizedBox(
-                                      //   height: 50,
-                                      // ),
-                                      // ignore: deprecated_member_use
-                                      // FlatButton(
-                                      //   shape: RoundedRectangleBorder(
-                                      //       borderRadius:
-                                      //       BorderRadius.circular(20.0),
-                                      //       side: BorderSide(color: Colors.red)),
-                                      //   color: Colors.deepOrange,
-                                      //   textColor: Colors.white,
-                                      //   materialTapTargetSize:
-                                      //   MaterialTapTargetSize.shrinkWrap,
-                                      //   disabledTextColor: Colors.black,
-                                      //   padding: EdgeInsets.all(9.0),
-                                      //   splashColor: Colors.red,
-                                      //   onPressed: () {},
-                                      //   child: Text(
-                                      //     "ທຳນາຍ",
-                                      //     style: TextStyle(fontSize: 40.0),
-                                      //   ),
-                                      // ),
-                                      SizedBox(
-                                        height: 50,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  FlatButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        side: BorderSide(color: Colors.red)),
+                                    color: Colors.deepOrange,
+                                    textColor: Colors.white,
+                                    disabledTextColor: Colors.black,
+                                    padding: EdgeInsets.all(10.0),
+                                    splashColor: Colors.red,
+                                    onPressed: () {},
+                                    child: DelayedDisplay(
+                                      delay: Duration(seconds: 6),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 300,
+                                        child: Image.asset(
+                                          lottery[_lotteryIndex]
+                                              ['lotteryImage'],
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    ],
-                                  )
+                                    ),
+                                    // child: Container(
+                                    //   width: double.infinity,
+                                    //   height: 300,
+                                    //   child: Image.asset( lottery[_lotteryIndex]
+                                    //   ['lotteryImage'], fit: BoxFit.cover,),
+                                    // ),
+                                  ),
+                                  // Lottery(lotteryIndex: _lotteryIndex, lottery: lottery, val1: variable1,val2: variable2,val3: variable3,val4: variable4,),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  FlatButton(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        side: BorderSide(color: Colors.red)),
+                                    color: Colors.deepOrange,
+                                    textColor: Colors.white,
+                                    materialTapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                    disabledTextColor: Colors.black,
+                                    padding: EdgeInsets.all(9.0),
+                                    splashColor: Colors.red,
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => Run()));
+                                    },
+                                    child: Text(
+                                      "ທຳນາຍ",
+                                      style: TextStyle(fontSize: 40.0),
+                                    ),
+                                  ),
+
+                                  SizedBox(
+                                    height: 50,
+                                  ),
                                 ],
-                              ),
-                            )),
+                              )
+                            ],
+                          ),
+                        )),
                       ],
                     ),
                   ),
@@ -805,7 +850,6 @@ class _RunState extends State<Run> with SingleTickerProviderStateMixin {
     );
   }
 
-
   void YourLuckyNumber() {
     var random = Random();
     int luckyNo = random.nextInt(9);
@@ -813,13 +857,11 @@ class _RunState extends State<Run> with SingleTickerProviderStateMixin {
     int luckyNo3 = random.nextInt(9);
     int luckyNo4 = random.nextInt(9);
 
-
     setState(() {
       variable1 = luckyNo;
       variable2 = luckyNo2;
       variable3 = luckyNo3;
       variable4 = luckyNo4;
-
     });
   }
 

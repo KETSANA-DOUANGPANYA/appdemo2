@@ -44,18 +44,31 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
-    return Scaffold(
-      backgroundColor: Colors.deepOrange,
-      body: Stack(
-        children: <Widget>[
-          menu(context),
-          dashboard(context),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                Color(0xFFF4831F),
+                Color(0xFFF26922),
+
+              ],
+            ))),
+            menu(context),
+            dashboard(context),
+          ],
+        ),
       ),
     );
   }
 
   Widget menu(context) {
+    Size size = MediaQuery.of(context).size;
     return SlideTransition(
       position: _slideAnimation,
       child: ScaleTransition(
@@ -70,7 +83,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: 200,
+                  height: size.height * 0.2,
                 ),
                 ListTile(
                   leading: Icon(
@@ -119,36 +132,45 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   // trailing: Icon(Icons.more_vert),
                   onTap: () {},
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.exit_to_app,
-                    size: 40,
-                    color: Colors.black,
-                  ),
-                  title: Text('ອອກຈາກເເອັບ'),
-
-                  // trailing: Icon(Icons.more_vert),
-                  onTap: () {
-                    if (Platform.isAndroid) {
-                      SystemNavigator.pop();
-                    } else if (Platform.isIOS) {
-                      exit(0);
-                    }
-                  },
-                ),
                 SizedBox(
+                  width: double.infinity,
                   height: 250,
                 ),
-                ListTile(
-                  leading: Icon(
-                    Icons.settings,
-                    size: 40,
-                    color: Colors.black,
-                  ),
-                  title: Text('ຕັ້ງຄ່າ'),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.settings,
+                          size: 40,
+                          color: Colors.black,
+                        ),
+                        title: Text('ຕັ້ງຄ່າ'),
 
-                  // trailing: Icon(Icons.more_vert),
-                  onTap: () {},
+                        // trailing: Icon(Icons.more_vert),
+                        onTap: () {},
+                      ),
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.exit_to_app,
+                          size: 40,
+                          color: Colors.black,
+                        ),
+                        title: Text('ອອກຈາກເເອັບ'),
+
+                        // trailing: Icon(Icons.more_vert),
+                        onTap: () {
+                          if (Platform.isAndroid) {
+                            SystemNavigator.pop();
+                          } else if (Platform.isIOS) {
+                            exit(0);
+                          }
+                        },
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
